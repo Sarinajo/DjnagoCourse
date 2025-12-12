@@ -37,18 +37,32 @@ path(‘’, views.index, name = ‘index’)
 
 
 
-]'''
+]
+views can be written in class too instead of function. also Class based Views also known as CBV.
+CBV inherits from django.views.View
+
+class HomeView(view):
+	def get(self, request):
+		return HttpResoonse("hello")
+in in yrls.py we write
+path('',HomeView.as_view(),name ='home')
+'''
 
 
+
+from django.views import View
 from django.http import HttpResponse
+from django.shortcuts import render
 import os
 
 
 def index(request):
-    return HttpResponse('''<h1>Hello SJ</h1> <a href="https://www.youtube.com/watch?v=AepgWsROO4k&list=PLu0W_9lII9ah7DDtYtflgwMwpT3xmjXY9&index=7"> Django Code with harry <a/>''')
+	context = {'name':'Sarina'}
+	return render(request, 'index.html', context)
+    #return HttpResponse('''<h1>Hello SJ</h1> <a href="https://www.youtube.com/watch?v=AepgWsROO4k&list=PLu0W_9lII9ah7DDtYtflgwMwpT3xmjXY9&index=7"> Django Code with harry <a/>''')
 
 def about(request):
-	return HttpResponse('''<h1>This is about page</h1> <a href="/home/"><button>Go back to home page</button></a>''')
+	return HttpResponse('''<h1>This is about page</h1> <a href="/"><button>Go back to home page</button></a>''')
 
 def fileo(request):
 	file_dir = os.path.dirname(__file__)
