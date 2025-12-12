@@ -45,10 +45,10 @@ import os
 
 
 def index(request):
-    return HttpResponse('hello sj')
+    return HttpResponse('''<h1>Hello SJ</h1> <a href="https://www.youtube.com/watch?v=AepgWsROO4k&list=PLu0W_9lII9ah7DDtYtflgwMwpT3xmjXY9&index=7"> Django Code with harry <a/>''')
 
 def about(request):
-	return HttpResponse('hello this is about')
+	return HttpResponse('''<h1>This is about page</h1> <a href="/home/"><button>Go back to home page</button></a>''')
 
 def fileo(request):
 	file_dir = os.path.dirname(__file__)
@@ -56,4 +56,9 @@ def fileo(request):
 	with open(file_path,'r') as f:
 		content = f.read()
 		return HttpResponse(content)
+
+def home(request):
+	return HttpResponse('''<h1>This is home page</h1> <a href="/about/"><button>Go to about page</button></a>''')
+
+
 
